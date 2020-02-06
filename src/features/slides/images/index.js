@@ -38,3 +38,12 @@ const metaImages = [
     position: "top"
   }
 ];
+// Array of relative paths to images
+const requireImg = require.context("./", false, /.*.jpg$/i);
+const images = requireImg.keys().map(path => requireImg(path));
+
+metaImages.forEach((metaObj, i) => {
+  metaObj.src = images[i];
+});
+
+export default metaImages;
