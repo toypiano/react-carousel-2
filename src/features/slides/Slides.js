@@ -43,6 +43,7 @@ export default props => {
         id={`image-${i}`}
         src={img.src}
         title={img.title}
+        isCurrent={i === 0}
       >
         <p>{img.content}</p>
       </StyledSlide>
@@ -52,7 +53,6 @@ export default props => {
 };
 
 function Slide(props) {
-  console.log(props);
   return (
     <li {...props}>
       <div className="SlideContent">
