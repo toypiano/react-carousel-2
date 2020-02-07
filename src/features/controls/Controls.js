@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import {
   FaPlay,
   FaPause,
@@ -6,9 +7,27 @@ import {
   FaForward
 } from "react-icons/fa";
 
+const IconButton = styled.button`
+  font-size: 2rem;
+  width: 3rem;
+  height: 3rem;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: hsla(0, 100%, 100%, 0.5);
+`;
+
+const StyledControls = styled.div`
+  position: absolute;
+  right: 20px;
+  bottom: 36px;
+  display: flex;
+  justify-content: center;
+`;
+
 export default props => {
   return (
-    <div>
+    <StyledControls>
       {props.isPlaying ? (
         <IconButton>
           <FaPause />
@@ -25,13 +44,9 @@ export default props => {
       <IconButton>
         <FaForward />
       </IconButton>
-    </div>
+    </StyledControls>
   );
 };
-
-function IconButton(props) {
-  return <button {...props} />;
-}
 
 function SpaceGif({ width }) {
   return <div style={{ display: "inline-block", width }} />;
