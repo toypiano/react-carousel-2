@@ -32,6 +32,8 @@ const StyledSlide = styled.li`
     h2 {
       font-size: 2rem;
     }
+    ${props =>
+      props.isBottom ? "position: absolute; bottom: 120px;" : null}
   }
 `;
 
@@ -56,6 +58,7 @@ const Slides = props => {
         src={slide.src}
         title={slide.title}
         isCurrent={i === state.currentIndex}
+        isBottom={slide.position === "bottom"}
       >
         <p>{slide.content}</p>
       </Slide>
