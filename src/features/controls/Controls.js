@@ -14,13 +14,13 @@ const IconButton = styled.button`
   background-color: transparent;
   outline: none;
   border: none;
-  color: hsla(0, 100%, 100%, 0.5);
+  color: hsla(0, 100%, 100%, 0.75);
 `;
 
 const StyledControls = styled.div`
   position: absolute;
   right: 20px;
-  bottom: 36px;
+  bottom: 50px;
   display: flex;
   justify-content: center;
 `;

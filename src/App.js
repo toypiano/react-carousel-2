@@ -1,4 +1,6 @@
 import React from "react";
+import imgs from "./features/slides/images/";
+
 import Slides from "./features/slides/Slides";
 import SlideNav from "./features/slideNav/SlideNav";
 import Controls from "./features/controls/Controls";
@@ -11,8 +13,8 @@ function Carousel(props) {
 function App() {
   return (
     <Carousel>
-      <Slides />
-      <SlideNav />
+      <Slides imgs={imgs} />
+      <SlideNav slides={imgs} />
       <Controls />
       <ProgressBar />
     </Carousel>

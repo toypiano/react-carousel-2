@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import imgs from "./images/";
 
 const StyledSlide = styled(Slide)`
   opacity: 1;
@@ -36,7 +35,7 @@ const StyledSlide = styled(Slide)`
 `;
 
 export default props => {
-  const slides = imgs.map((img, i) => {
+  const slides = props.imgs.map((img, i) => {
     return (
       <StyledSlide
         key={img.id}
