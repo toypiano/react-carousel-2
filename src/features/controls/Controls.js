@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { StateContext } from "../../store/store";
+import { actionTypes } from "../../store/actions";
+
 import {
   FaPlay,
   FaPause,
@@ -15,6 +18,11 @@ const IconButton = styled.button`
   outline: none;
   border: none;
   color: hsla(0, 100%, 100%, 0.75);
+  &:active {
+    position: relative;
+    top: 1px;
+    left: 1px;
+  }
 `;
 
 const StyledControls = styled.div`
@@ -25,10 +33,15 @@ const StyledControls = styled.div`
   justify-content: center;
 `;
 
-export default props => {
+function SpaceGif({ width }) {
+  return <div style={{ display: "inline-block", width }} />;
+}
+
+const Controls = props => {
+  const { state, dispatch } = useContext(StateContext);
   return (
     <StyledControls>
-      {props.isPlaying ? (
+      {state.isPlaying ? (
         <IconButton>
           <FaPause />
         </IconButton>
@@ -38,16 +51,18 @@ export default props => {
         </IconButton>
       )}
       <SpaceGif width="10px" />
-      <IconButton>
+      <IconButton
+        onClick={() => dispatch({ type: actionTypes.PREV })}
+      >
         <FaBackward />
       </IconButton>
-      <IconButton>
+      <IconButton
+        onClick={() => dispatch({ type: actionTypes.NEXT })}
+      >
         <FaForward />
       </IconButton>
     </StyledControls>
   );
 };
 
-function SpaceGif({ width }) {
-  return <div style={{ display: "inline-block", width }} />;
-}
+export default Controls;

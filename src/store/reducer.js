@@ -1,10 +1,4 @@
 import { actionTypes } from "./actions";
-import slides from "../features/slides/images/";
-
-const initialState = {
-  currentIndex: 0,
-  slides: slides
-};
 
 const next = (state, action) => {
   return {
@@ -22,7 +16,9 @@ const prev = (state, action) => {
   };
 };
 
-export default (state = initialState, action) => {
+// no state = initialState convention here.
+// because this reducer is for "useReducer" hook.
+const reducer = (state, action) => {
   switch (action.type) {
     case actionTypes.NEXT:
       return next(state, action);
@@ -32,3 +28,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default reducer;

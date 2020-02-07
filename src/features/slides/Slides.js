@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { StateContext } from "../../store/store";
 
-const StyledSlide = styled(Slide)`
+const StyledSlide = styled.li`
   opacity: 1;
   position: absolute;
   top: 0;
@@ -34,30 +35,33 @@ const StyledSlide = styled(Slide)`
   }
 `;
 
-export default props => {
-  const slides = props.imgs.map((img, i) => {
+function Slide(props) {
+  return (
+    <StyledSlide {...props} aria-hidden={!props.isCurrent}>
+      <div className="SlideContent">
+        <h2 id={props.id}>{props.title}</h2>
+        {props.children}
+      </div>
+    </StyledSlide>
+  );
+}
+
+const Slides = props => {
+  const { state } = useContext(StateContext);
+  const slides = state.slides.map((slide, i) => {
     return (
-      <StyledSlide
-        key={img.id}
+      <Slide
+        key={slide.id}
         id={`image-${i}`}
-        src={img.src}
-        title={img.title}
-        isCurrent={i === 0}
+        src={slide.src}
+        title={slide.title}
+        isCurrent={i === state.currentIndex}
       >
-        <p>{img.content}</p>
-      </StyledSlide>
+        <p>{slide.content}</p>
+      </Slide>
     );
   });
   return <ul>{slides}</ul>;
 };
 
-function Slide(props) {
-  return (
-    <li {...props}>
-      <div className="SlideContent">
-        <h2 id={props.id}>{props.title}</h2>
-        {props.children}
-      </div>
-    </li>
-  );
-}
+export default Slides;
