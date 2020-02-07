@@ -19,9 +19,9 @@ const IconButton = styled.button`
   border: none;
   color: hsla(0, 100%, 100%, 0.75);
   &:active {
-    position: relative;
-    top: 1px;
-    left: 1px;
+    transform: scale(1.1);
+    filter: opacity(1) brightness(1.1)
+      drop-shadow(0 0 3px hsla(0, 100%, 100%, 0.2));
   }
 `;
 

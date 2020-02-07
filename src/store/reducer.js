@@ -16,6 +16,12 @@ const prev = (state, action) => {
   };
 };
 
+const goto = (state, action) => {
+  return {
+    ...state,
+    currentIndex: action.payload
+  };
+};
 // no state = initialState convention here.
 // because this reducer is for "useReducer" hook.
 const reducer = (state, action) => {
@@ -24,6 +30,8 @@ const reducer = (state, action) => {
       return next(state, action);
     case actionTypes.PREV:
       return prev(state, action);
+    case actionTypes.GOTO:
+      return goto(state, action);
     default:
       return state;
   }

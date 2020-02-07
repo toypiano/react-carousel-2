@@ -1,5 +1,4 @@
 import React from "react";
-import imgs from "./features/slides/images/";
 
 import { StateProvider } from "./store/store";
 
@@ -16,8 +15,8 @@ function App() {
   return (
     <StateProvider>
       <Carousel>
-        <Slides imgs={imgs} />
-        <SlideNav slides={imgs} />
+        <Slides />
+        <SlideNav />
         <Controls />
         <ProgressBar />
       </Carousel>
