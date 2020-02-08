@@ -14,14 +14,16 @@ const prev = (state, action) => {
     ...state,
     currentIndex:
       (state.currentIndex - 1 + state.slides.length) %
-      state.slides.length
+      state.slides.length,
+    isPlaying: false
   };
 };
 
 const goto = (state, action) => {
   return {
     ...state,
-    currentIndex: action.payload
+    currentIndex: action.payload,
+    isPlaying: false
   };
 };
 

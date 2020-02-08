@@ -17,7 +17,7 @@ const StyledSlide = styled.li`
     background-size: 100%;
   }
   list-style-type: none;
-  transition: opacity 300ms ease;
+  transition: opacity 200ms ease;
   &[aria-hidden="true"] {
     opacity: 0;
     transition-delay: 200ms;
