@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
-import { StateProvider } from "./store/store";
+import { StateProvider, StateContext } from "./store/store";
+import { actionTypes } from "./store/actions";
 
 import vars from "./common/vars";
 
@@ -19,6 +20,15 @@ const StyledCarousel = styled.section`
   }
 `;
 function Carousel(props) {
+  const { state, dispatch } = useContext(StateContext);
+  useEffect(() => {
+    if (state.isPlaying) {
+      let timeout = setTimeout(() => {
+        dispatch({ type: actionTypes.PROGRESS });
+      }, vars.SLIDE_DURATION);
+      return () => clearTimeout(timeout);
+    }
+  }, [state.isPlaying, dispatch, state.currentIndex]);
   return <StyledCarousel {...props} />;
 }
 

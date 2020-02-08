@@ -42,11 +42,15 @@ const Controls = props => {
   return (
     <StyledControls>
       {state.isPlaying ? (
-        <IconButton>
+        <IconButton
+          onClick={() => dispatch({ type: actionTypes.PAUSE })}
+        >
           <FaPause />
         </IconButton>
       ) : (
-        <IconButton>
+        <IconButton
+          onClick={() => dispatch({ type: actionTypes.PLAY })}
+        >
           <FaPlay />
         </IconButton>
       )}

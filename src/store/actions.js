@@ -4,5 +4,5 @@ export const actionTypes = {
   PLAY: "PLAY",
   PAUSE: "PAUSE",
   GOTO: "GOTO",
-  PROGRESS: "PROGRESS"
+  PROGRESS: "PROGRESS" // auto-progress to the next slide
 };

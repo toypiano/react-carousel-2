@@ -11,7 +11,8 @@ import slides from "../features/slides/images/";
 // https://reactjs.org/docs/hooks-reference.html#specifying-the-initial-state
 const initialState = {
   currentIndex: 0,
-  slides: slides
+  slides: slides,
+  isPlaying: false
 };
 
 const StateContext = createContext(initialState);
