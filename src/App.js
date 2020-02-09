@@ -29,18 +29,26 @@ function Carousel(props) {
       return () => clearTimeout(timeout);
     }
   }, [state.isPlaying, dispatch, state.currentIndex]);
-  return <StyledCarousel {...props} />;
+  return (
+    <StyledCarousel {...props}>
+      <Slides />
+      <SlideNav />
+      <Controls />
+      <ProgressBar
+        // Diff value in key prop forces React to unmount & remount component
+        // thus, cleanup & re-init useEffect inside the component
+        key={state.currentIndex + state.isPlaying}
+        duration={vars.SLIDE_DURATION}
+        isAnimating={state.isPlaying}
+      />
+    </StyledCarousel>
+  );
 }
 
 function App() {
   return (
     <StateProvider>
-      <Carousel>
-        <Slides />
-        <SlideNav />
-        <Controls />
-        <ProgressBar />
-      </Carousel>
+      <Carousel />
     </StateProvider>
   );
 }

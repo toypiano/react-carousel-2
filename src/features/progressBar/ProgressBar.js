@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
+
 import styled from "styled-components";
 import useProgress from "./useProgress";
-import { StateContext } from "../../store/store";
 
 const StyledProgressBar = styled.div`
   position: absolute;
@@ -14,16 +14,11 @@ const StyledProgressBar = styled.div`
   }
 `;
 
-// TODO: fix glitches with continuous clicks
-// https://css-tricks.com/using-requestanimationframe-with-react-hooks/
-export default props => {
-  const { state } = useContext(StateContext);
-  const progress = useProgress();
+export default ({ isAnimating, duration }) => {
+  const progress = useProgress(isAnimating, duration);
   return (
     <StyledProgressBar>
-      {state.isPlaying && (
-        <div style={{ width: `${progress * 100}%` }} />
-      )}
+      <div style={{ width: `${progress * 100}%` }} />
     </StyledProgressBar>
   );
 };

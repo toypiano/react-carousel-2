@@ -1,30 +1,31 @@
-import { useState, useContext, useEffect } from "react";
-import { StateContext } from "../../store/store";
-import vars from "../../common/vars";
+import { useState, useEffect } from "react";
 
-const useProgress = () => {
-  const { state } = useContext(StateContext);
+const useProgress = (isAnimating, duration) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    if (state.isPlaying) {
-      let start = null;
+    if (isAnimating) {
+      let startTime = null;
       let rafId = null;
+
       const step = timestamp => {
         // Init 'start' with initial timestamp when rAF is called the first time.
-        if (!start) start = timestamp;
-        const progress = timestamp - start;
-        setProgress(progress);
-        if (progress < vars.SLIDE_DURATION) {
+        if (!startTime) {
+          startTime = timestamp;
+        }
+        let timeDelta = timestamp - startTime;
+        setProgress(timeDelta);
+        if (timeDelta < duration) {
           rafId = requestAnimationFrame(step);
         }
       };
       rafId = requestAnimationFrame(step);
       return () => cancelAnimationFrame(rafId);
     }
-  }, [state.isPlaying, state.currentIndex]);
+  }, [isAnimating, duration]);
 
-  return state.isPlaying ? progress / vars.SLIDE_DURATION : 0;
+  // prevent progress/ duration becoming very large when duration < 1
+  return isAnimating ? Math.min(progress / duration, duration) : 0;
 };
 
 export default useProgress;
